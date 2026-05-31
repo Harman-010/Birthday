@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Taran ❧</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── HOME HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:5rem 2rem 4rem;
+  background:linear-gradient(160deg,#f8f4ec 0%,#f0ead8 50%,#e8e2d0 100%);
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(90,100,72,0.04) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.hero-content{position:relative;z-index:1}
+.hero-pre{
+  font-size:10px;letter-spacing:0.55em;color:var(--sage-light);
+  text-transform:uppercase;margin-bottom:3rem;
+  animation:fadeUp 1s ease both;
+}
+.frame-box{
+  border:1px solid var(--sage-dim);padding:2.5rem 4rem;
+  position:relative;margin-bottom:2.5rem;display:inline-block;
+  animation:fadeUp 1s 0.25s ease both;
+}
+.frame-box::before{content:'';position:absolute;top:-5px;left:-5px;width:18px;height:18px;border-top:1.5px solid var(--sage);border-left:1.5px solid var(--sage)}
+.frame-box::after{content:'';position:absolute;bottom:-5px;right:-5px;width:18px;height:18px;border-bottom:1.5px solid var(--sage);border-right:1.5px solid var(--sage)}
+.fc-tr{position:absolute;top:-5px;right:-5px;width:18px;height:18px;border-top:1.5px solid var(--sage);border-right:1.5px solid var(--sage)}
+.fc-bl{position:absolute;bottom:-5px;left:-5px;width:18px;height:18px;border-bottom:1.5px solid var(--sage);border-left:1.5px solid var(--sage)}
+.hero-florish{
+  font-family:'IM Fell English',serif;font-size:1.05rem;
+  color:var(--sage-light);margin-bottom:0.5rem;font-style:italic;letter-spacing:0.1em;
+}
+.hero-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(4rem,12vw,7.5rem);
+  font-weight:500;color:var(--sage);line-height:0.95;letter-spacing:0.08em;
+}
+.hero-tagline{
+  font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.4em;
+  color:var(--sage-dim);text-transform:uppercase;margin-top:0.75rem;
+}
+.hero-desc{
+  font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;
+  color:var(--warm);max-width:420px;line-height:2;
+  animation:fadeUp 1s 0.55s ease both;
+}
+.hero-cta{
+  margin-top:3rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp 1s 0.75s ease both;
+}
+
+/* ── SECTION NAV CARDS ── */
+.pages-section{padding:5rem 2rem;text-align:center}
+.cards-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.5rem;margin-top:3rem;
+}
+.page-card{
+  background:var(--ivory2);border:0.5px solid var(--sage-dim);
+  padding:2.5rem 2rem;text-align:center;text-decoration:none;color:inherit;
+  transition:transform 0.3s,box-shadow 0.3s,background 0.3s;display:block;
+  position:relative;overflow:hidden;
+}
+.page-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:2px;background:var(--sage);transform:scaleX(0);
+  transform-origin:left;transition:transform 0.35s ease;
+}
+.page-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(90,100,72,0.1);background:var(--ivory)}
+.page-card:hover::after{transform:scaleX(1)}
+.card-icon{font-size:2.5rem;display:block;margin-bottom:1.25rem;opacity:0.7}
+.card-num{
+  font-family:'Playfair Display',serif;font-size:0.75rem;font-style:italic;
+  color:var(--sage-dim);margin-bottom:0.5rem;letter-spacing:0.2em;
+}
+.card-title{
+  font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;
+  color:var(--sage);margin-bottom:0.75rem;
+}
+.card-desc{font-size:0.9rem;color:var(--warm);line-height:1.7;font-weight:300}
+.card-link{
+  display:inline-block;margin-top:1.25rem;font-size:9px;letter-spacing:0.4em;
+  text-transform:uppercase;color:var(--sage-light);
+}
+
+/* ── QUOTE STRIP ── */
+.quote-strip{
+  padding:5rem 2rem;text-align:center;
+  background:linear-gradient(135deg,var(--ivory3),var(--ivory2),var(--ivory3));
+  border-top:0.5px solid var(--sage-dim);border-bottom:0.5px solid var(--sage-dim);
+}
+.big-quote{
+  font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.5vw,2.2rem);
+  font-style:italic;color:var(--earth);max-width:680px;
+  margin:0 auto;line-height:1.9;font-weight:400;
+}
+.quote-attr{
+  margin-top:1.5rem;font-size:10px;letter-spacing:0.3em;
+  text-transform:uppercase;color:var(--sage-light);
+}
+
+/* ── ABOUT STRIP ── */
+.about-strip{padding:5rem 2rem;text-align:center}
+.about-text{
+  font-size:1.1rem;color:var(--warm);line-height:2.1;
+  font-weight:300;max-width:640px;margin:0 auto;
+}
+.traits{
+  display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;
+  margin-top:3rem;
+}
+.trait{text-align:center}
+.trait-icon{font-size:2rem;display:block;margin-bottom:0.6rem;opacity:0.65}
+.trait-name{
+  font-family:'Playfair Display',serif;font-size:0.9rem;font-style:italic;
+  color:var(--sage);margin-bottom:2px;
+}
+.trait-desc{font-size:11px;color:var(--warm);letter-spacing:0.08em;font-weight:300}
+
+@media(max-width:600px){
+  .frame-box{padding:2rem 2rem}
+  .hero-name{font-size:3.5rem}
+  .cards-grid{grid-template-columns:1fr}
+  .traits{gap:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Taran ❧</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+  </ul>
+  <div class="nav-burger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+    <li><a href="gifts.html">Gifts</a></li>
+  </ul>
+</div>
+
+<div class="page">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-pre">❧ &nbsp; A refined birthday celebration &nbsp; ❧</div>
+    <div class="frame-box">
+      <div class="fc-tr"></div><div class="fc-bl"></div>
+      <div class="hero-florish">celebrating the wonderful</div>
+      <div class="hero-name">Taran</div>
+      <div class="hero-tagline">Est. this beautiful day</div>
+    </div>
+    <p class="hero-desc">  Moto 03.06.07  </p>
+    <div class="hero-cta">
+      <a href="wishes.html" class="btn-sage">Birthday Wishes</a>
+      <a href="memories.html" class="btn-outline">Memories</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION CARDS -->
+<section class="pages-section">
+  <div class="section-label">❧ &nbsp; explore your celebration &nbsp; ❧</div>
+  <h2 class="section-title"> Two pages, All for You</h2>
+  <div class="rule"><span></span><em>❧</em><span></span></div>
+
+  <div class="cards-grid">
+    <a href="wishes.html" class="page-card reveal">
+      <span class="card-icon">🌿</span>
+      <div class="card-num">Page one</div>
+      <div class="card-title">Birthday Wishes</div>
+      <p class="card-desc">Heartfelt wishes for new year — joy, love, peace, and all the beautiful things you deserve.</p>
+      <span class="card-link">Visit page →</span>
+    </a>
+    <a href="memories.html" class="page-card reveal">
+      <span class="card-icon">📷</span>
+      <div class="card-num">Page two</div>
+      <div class="card-title">Memories</div>
+      <p class="card-desc">A gallery of golden moments — the laughs, the stories, the little things that make friendship extraordinary.</p>
+      <span class="card-link">Visit page →</span>
+    </a>
+   
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-strip reveal">
+  <p class="big-quote">"There are friends, there is family, and then there are friends who become family. you are that rare, irreplaceable kind."</p>
+  <div class="quote-attr">❧ &nbsp; written by Mr.Housecleaner &nbsp; ❧</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-strip">
+  <div class="section-label reveal">❧ &nbsp; about the birthday girl &nbsp; ❧</div>
+  <h2 class="section-title reveal">A woman of rare grace</h2>
+  <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+  <p class="about-text reveal">
+    "Some souls are just made of sunshine and grace. You are one of them."
+  </p>
+  <div class="traits">
+    <div class="trait reveal"><span class="trait-icon">🌿</span><div class="trait-name">Natural elegance</div><div class="trait-desc">effortlessly graceful</div></div>
+    <div class="trait reveal"><span class="trait-icon">☕</span><div class="trait-name">Warm presence</div><div class="trait-desc">makes anywhere feel home</div></div>
+    <div class="trait reveal"><span class="trait-icon">📖</span><div class="trait-name">Deep thinker</div><div class="trait-desc">beautifully thoughtful</div></div>
+    <div class="trait reveal"><span class="trait-icon">🌻</span><div class="trait-name">Quiet strength</div><div class="trait-desc">grows through every season</div></div>
+    <div class="trait reveal"><span class="trait-icon">✨</span><div class="trait-name">Pure magic</div><div class="trait-desc">one of a kind always</div></div>
+  </div>
+</section>
+
+</div><!-- end .page -->
+
+<!-- FOOTER -->
+<site-footer>
+  <div class="footer-name">Taran ❧</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+  </ul>
+  <div class="footer-copy">❧ &nbsp; Happy Birthday &nbsp; ❧</div>
+  <div class="footer-copy">❧ &nbsp; by Mr.Housecleaner&nbsp; ❧</div>
+</site-footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+const revs=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');io.unobserve(el.target)}}),{threshold:0.1});
+revs.forEach(r=>io.observe(r));
+</script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Wishes ❧</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── WISHES PAGE ── */
+.wishes-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;margin-top:3rem;
+}
+.wish-card{
+  background:var(--ivory2);border:0.5px solid var(--sage-dim);
+  padding:2.25rem 2rem;position:relative;transition:transform 0.3s,box-shadow 0.3s,background 0.3s;
+}
+.wish-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(90,100,72,0.09);background:var(--ivory)}
+.wish-num{
+  font-family:'Playfair Display',serif;font-size:3.5rem;font-style:italic;
+  color:rgba(90,100,72,0.12);position:absolute;top:12px;right:16px;line-height:1;
+}
+.wish-icon{font-size:1.75rem;display:block;margin-bottom:1rem;opacity:0.7}
+.wish-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-style:italic;color:var(--sage);margin-bottom:0.75rem}
+.wish-text{font-size:0.9rem;color:var(--warm);line-height:1.9;font-weight:300}
+
+/* Big wish */
+.big-wish{
+  background:var(--ivory3);border:1px solid var(--sage-dim);
+  padding:3rem 2.5rem;text-align:center;margin-top:1.5rem;
+  position:relative;
+}
+.big-wish::before,.big-wish::after{content:'❧';position:absolute;top:-12px;font-size:1.2rem;color:var(--sage-light);background:var(--ivory3);padding:0 8px}
+.big-wish::before{left:24px}.big-wish::after{right:24px}
+.big-wish-text{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3vw,1.7rem);font-style:italic;color:var(--earth);line-height:1.9}
+.big-wish-sig{margin-top:1.25rem;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--sage-light)}
+
+/* Countdown */
+.cd-section{
+  padding:4rem 2rem;text-align:center;
+  background:linear-gradient(135deg,var(--ivory3),var(--ivory2),var(--ivory3));
+  border-top:0.5px solid var(--sage-dim);border-bottom:0.5px solid var(--sage-dim);
+}
+.cd-wrap{display:flex;justify-content:center;gap:1.25rem;margin-top:2rem;flex-wrap:wrap}
+.cd-block{min-width:90px;background:var(--ivory);border:0.5px solid var(--sage-dim);padding:1.5rem 1rem 1rem}
+.cd-num{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--sage);display:block;line-height:1}
+.cd-label{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.35em;color:var(--sage-light);text-transform:uppercase;margin-top:6px;display:block}
+
+/* Letter section */
+.letter-section{padding:5rem 2rem;text-align:center}
+.letter-box{
+  max-width:640px;margin:0 auto;
+  background:var(--ivory2);border:0.5px solid var(--sage-dim);
+  padding:3.5rem 3rem;position:relative;
+}
+.letter-box::before{
+  content:'';position:absolute;top:12px;left:12px;right:12px;bottom:12px;
+  border:0.5px dashed rgba(90,100,72,0.15);pointer-events:none;
+}
+.letter-salutation{
+  font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;
+  color:var(--sage);margin-bottom:1.5rem;
+}
+.letter-body{
+  font-family:'IM Fell English',serif;font-size:1.05rem;
+  color:var(--earth);line-height:2.1;text-align:left;
+}
+.letter-sign{
+  margin-top:2rem;text-align:right;
+  font-family:'Playfair Display',serif;font-style:italic;
+  color:var(--sage-light);font-size:1rem;
+}
+
+/* Nav between pages */
+.page-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:2rem 2rem 0;max-width:960px;margin:0 auto;flex-wrap:wrap;gap:1rem;
+}
+.page-nav a{
+  font-size:10px;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--sage-light);text-decoration:none;display:flex;align-items:center;gap:6px;
+}
+.page-nav a:hover{color:var(--sage)}
+
+@media(max-width:600px){.letter-box{padding:2.5rem 1.75rem}.wishes-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Taran ❧</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html" class="active">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+  </ul>
+  <div class="nav-burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+  </ul>
+</div>
+
+<div class="page">
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <span class="page-hero-icon">🌿</span>
+    <div class="page-hero-label">❧ &nbsp; Page one &nbsp; ❧</div>
+    <h1 class="page-hero-title">Birthday Wishes</h1>
+    <p class="page-hero-desc">Words of love, hope and celebration.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- WISH CARDS -->
+  <section style="padding:5rem 0;text-align:center">
+    <div class="section-label">❧ &nbsp; from the heart &nbsp; ❧</div>
+    <h2 class="section-title"> Wishes For You</h2>
+    <div class="rule"><span></span><em>❧</em><span></span></div>
+
+    <div class="wishes-grid">
+      <div class="wish-card reveal">
+        <div class="wish-num">I</div>
+        <span class="wish-icon">🌻</span>
+        <div class="wish-title">Lasting Happiness</div>
+        <p class="wish-text">May joy take root in every corner of your life and bloom with each new morning.</p>
+      </div>
+      <div class="wish-card reveal">
+        <div class="wish-num">IV</div>
+        <span class="wish-icon">🗺️</span>
+        <div class="wish-title">Bold Adventures</div>
+        <p class="wish-text">May this year bring new roads, unexpected detours that turn into the most beautiful stories of your life.</p>
+      </div>
+      <div class="wish-card reveal">
+        <div class="wish-num">V</div>
+        <span class="wish-icon">🌙</span>
+        <div class="wish-title">Restful Nights</div>
+        <p class="wish-text">May every night bring you rest, and every dream carry you somewhere extraordinary and serene.</p>
+      </div>
+      <div class="wish-card reveal">
+        <div class="wish-num">VII</div>
+        <span class="wish-icon">😇</span>
+        <div class="wish-title">Kindness</div>
+        <p class="wish-text">"May kindness return to you tenfold — because you give it so freely."</p>
+      </div>
+      <div class="wish-card reveal">
+        <div class="wish-num">VIII</div>
+        <span class="wish-icon">✨</span>
+        <div class="wish-title">Your Best Year Yet</div>
+        <p class="wish-text">May this birthday mark the beginning of the most beautiful, joyful, and extraordinary chapter of your life.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIG WISH -->
+  <div class="big-wish reveal">
+    <p class="big-wish-text">"ਮੰਗਦਾ ਹਾਂ ਰੱਬ ਕੋਲੋਂ ਤੇਰੀ ਲੰਮੀ ਉਮਰ ਦੀ ਦੁਆ ,
+                              ਸਾਡੀ ਹਰ ਖ਼ੁਸ਼ੀ ਵੀ ਤੇਰੇ ਨਾਮ ਹੋ ਜਾਵੇ।
+                              ਤੂੰ ਹੱਸਦੀ ਰਹੇਂ ਸਦਾ ਗੁਲਾਬ ਦੇ ਵਾਂਗੂੰ , 
+                              ਤੇਰਾ ਦਿਨ ਵੀ ਤੇਰੇ ਵਾਂਗ ਹੀ ਖਿੜ ਜਾਵੇ।     
+                              ਰੱਬ ਕਰੇ ਤੇਰੀ ਹਰ ਮੁਰਾਦ ਪੂਰੀ, 
+                              ਤੇਰੀ ਜ਼ਿੰਦਗੀ ਦੀ ਹਰ ਸਵੇਰ ਤੇ ਸ਼ਾਮ ਸੁਹਣੀ ਹੋ ਜਾਵੇ।"</p>
+    <div class="big-wish-sig">❧ &nbsp; a wish with all the love in the world &nbsp; ❧</div>
+  </div>
+
+</div>
+
+<!-- COUNTDOWN -->
+<section class="cd-section reveal">
+  <div class="section-label">❧ &nbsp; counting down &nbsp; ❧</div>
+  <h2 class="section-title">Until your special day</h2>
+  <div class="rule"><span></span><em>❧</em><span></span></div>
+  <div class="cd-wrap">
+    <div class="cd-block"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Days</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Hours</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Minutes</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Seconds</span></div>
+  </div>
+  <p style="margin-top:1.25rem;font-size:0.85rem;font-style:italic;color:var(--sage-dim);font-family:'Playfair Display',serif"> Happy Birthday</p>
+</section>
+
+<!-- LETTER -->
+<section class="letter-section">
+  <div class="container" style="text-align:center">
+    <div class="section-label reveal">❧ &nbsp; a personal note &nbsp; ❧</div>
+    <h2 class="section-title reveal">A letter for her</h2>
+    <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+    <div class="letter-box reveal">
+      <div class="letter-salutation">Dearest Taran,</div>
+      <p class="letter-body">
+        On this birthday, I want you to know how much you mean to me. Not just today, not just when things are easy — but always. You are the kind of person who makes ordinary days feel like celebrations, who listens without judgement and cares without conditions.<br><br>
+        You deserve every beautiful thing this world has to offer. Every laugh, every adventure, every quiet morning without any woories, every dream that's been waiting patiently for the right moment.<br><br>
+        This year, I wish for you everything you've ever wished for yourself — and then a little more. Because you deserve it all.
+      </p>
+      <div class="letter-sign"> For my most special person, I will be always here u you. ❧</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE NAV -->
+<div class="page-nav">
+  <a href="index.html">← Back to home</a>
+  <a href="memories.html">Next: Memories →</a>
+</div>
+
+</div><!-- end .page -->
+
+<site-footer>
+  <div class="footer-name">Taran ❧</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+  </ul>
+  <div class="footer-copy">❧ &nbsp; Happy Birthday &nbsp; ❧</div>
+</site-footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+const revs=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');io.unobserve(el.target)}}),{threshold:0.1});
+revs.forEach(r=>io.observe(r));
+// Countdown — change month (0=Jan) and day
+const BD=new Date(new Date().getFullYear(),5,3);
+function tick(){
+  const now=new Date();let t=new Date(BD);if(t<now)t.setFullYear(t.getFullYear()+1);
+  const diff=t-now;
+  document.getElementById('cd-d').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+</script>
+</body>
+</html>

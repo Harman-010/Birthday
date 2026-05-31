@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memories — Taran ❧</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ── TIMELINE ── */
+.timeline{
+  position:relative;padding:4rem 0;
+  max-width:760px;margin:0 auto;
+}
+.timeline::before{
+  content:'';position:absolute;left:50%;top:0;bottom:0;
+  width:0.5px;background:var(--sage-dim);transform:translateX(-50%);
+}
+.t-item{
+  display:grid;grid-template-columns:1fr 48px 1fr;
+  gap:0;align-items:start;margin-bottom:3.5rem;
+}
+.t-item:nth-child(odd) .t-content{grid-column:1;text-align:right;padding-right:2.5rem}
+.t-item:nth-child(odd) .t-dot{grid-column:2}
+.t-item:nth-child(odd) .t-empty{grid-column:3}
+.t-item:nth-child(even) .t-empty{grid-column:1}
+.t-item:nth-child(even) .t-dot{grid-column:2}
+.t-item:nth-child(even) .t-content{grid-column:3;text-align:left;padding-left:2.5rem}
+.t-dot{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--ivory2);border:1px solid var(--sage-dim);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;margin-top:4px;position:relative;z-index:1;
+  transition:background 0.3s;
+}
+.t-item:hover .t-dot{background:var(--ivory3)}
+.t-label{
+  font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.4em;
+  text-transform:uppercase;color:var(--sage-light);margin-bottom:0.4rem;
+}
+.t-title{
+  font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;
+  color:var(--sage);margin-bottom:0.5rem;
+}
+.t-text{font-size:0.88rem;color:var(--warm);line-height:1.85;font-weight:300}
+
+/* ── POLAROIDS ── */
+.polaroid-section{
+  padding:5rem 2rem;
+  background:var(--ivory2);
+  border-top:0.5px solid var(--sage-dim);
+  border-bottom:0.5px solid var(--sage-dim);
+}
+.polaroid-grid{
+  display:flex;justify-content:center;flex-wrap:wrap;
+  gap:1.5rem;margin-top:3rem;
+}
+.polaroid{
+  background:#fff;padding:1rem 1rem 3rem;
+  box-shadow:0 4px 20px rgba(90,100,72,0.1);
+  max-width:190px;cursor:pointer;
+  transition:transform 0.35s,box-shadow 0.35s;
+}
+.polaroid:nth-child(1){transform:rotate(-3.5deg)}
+.polaroid:nth-child(2){transform:rotate(2deg)}
+.polaroid:nth-child(3){transform:rotate(-1.5deg)}
+.polaroid:nth-child(4){transform:rotate(3deg)}
+.polaroid:nth-child(5){transform:rotate(-2deg)}
+.polaroid:nth-child(6){transform:rotate(1.5deg)}
+.polaroid:hover{transform:rotate(0deg) scale(1.06)!important;box-shadow:0 12px 30px rgba(90,100,72,0.15);z-index:2}
+.polaroid-img{
+  width:100%;height:150px;display:flex;align-items:center;
+  justify-content:center;font-size:3.2rem;
+  background:linear-gradient(135deg,var(--ivory),var(--ivory2));
+  margin-bottom:0.75rem;
+}
+.polaroid-cap{
+  font-family:'Playfair Display',serif;font-size:0.78rem;
+  font-style:italic;color:var(--sage-light);text-align:center;
+}
+
+/* ── TRAITS ── */
+.traits-section{padding:5rem 2rem;text-align:center}
+.traits-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1.25rem;margin-top:3rem;max-width:900px;margin-left:auto;margin-right:auto;
+}
+.trait-card{
+  background:var(--ivory2);border:0.5px solid var(--sage-dim);
+  padding:2rem 1.5rem;transition:transform 0.3s;
+}
+.trait-card:hover{transform:translateY(-3px)}
+.trait-emoji{font-size:1.75rem;display:block;margin-bottom:0.75rem;opacity:0.7}
+.trait-title{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:1rem;color:var(--sage);margin-bottom:0.5rem;
+}
+.trait-text{font-size:0.88rem;color:var(--warm);line-height:1.8;font-weight:300}
+
+/* ── FAVOURITE THINGS ── */
+.favs-section{
+  padding:5rem 2rem;text-align:center;
+  background:linear-gradient(135deg,var(--ivory3),var(--ivory2),var(--ivory3));
+  border-top:0.5px solid var(--sage-dim);
+}
+.favs-row{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:1rem;margin-top:2.5rem;max-width:760px;margin-left:auto;margin-right:auto;
+}
+.fav-chip{
+  background:var(--ivory);border:0.5px solid var(--sage-dim);
+  padding:10px 20px;font-family:'Playfair Display',serif;
+  font-style:italic;font-size:0.9rem;color:var(--sage);
+  transition:background 0.3s,transform 0.2s;cursor:default;
+}
+.fav-chip:hover{background:var(--ivory3);transform:translateY(-2px)}
+
+/* ── ADD MEMORY CTA ── */
+.memory-cta{
+  padding:4rem 2rem;text-align:center;
+}
+.memory-input-box{
+  max-width:600px;margin:2rem auto 0;
+  background:var(--ivory2);border:0.5px solid var(--sage-dim);padding:2.5rem;
+}
+.memory-input-box textarea{
+  width:100%;border:0.5px solid var(--sage-dim);background:var(--ivory);
+  padding:1rem;font-family:'Playfair Display',serif;font-style:italic;
+  font-size:0.95rem;color:var(--earth);line-height:1.8;resize:none;
+  outline:none;min-height:100px;
+}
+.memory-input-box textarea:focus{border-color:var(--sage-light)}
+.memory-input-box textarea::placeholder{color:var(--sage-dim)}
+.memory-result{
+  margin-top:1.5rem;padding:1.25rem 1.5rem;
+  background:var(--ivory3);border-left:2px solid var(--sage);
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:0.95rem;color:var(--earth);line-height:1.8;
+  display:none;text-align:left;
+}
+
+/* Mobile timeline */
+@media(max-width:640px){
+  .timeline::before{left:20px}
+  .t-item{grid-template-columns:28px 1fr!important}
+  .t-item:nth-child(odd) .t-content,
+  .t-item:nth-child(even) .t-content{grid-column:2!important;text-align:left!important;padding-left:1.5rem!important;padding-right:0!important}
+  .t-item:nth-child(odd) .t-dot,
+  .t-item:nth-child(even) .t-dot{grid-column:1!important}
+  .t-empty{display:none!important}
+  .t-dot{width:28px;height:28px;font-size:0.8rem}
+  .polaroid{max-width:150px}
+  .polaroid-img{height:120px;font-size:2.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Taran ❧</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html" class="active">Memories</a></li>
+  </ul>
+  <div class="nav-burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+  </ul>
+</div>
+
+<div class="page">
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <span class="page-hero-icon">📷</span>
+    <div class="page-hero-label">❧ &nbsp; Page two &nbsp; ❧</div>
+    <h1 class="page-hero-title">Memories</h1>
+    <p class="page-hero-desc">The golden moments, the quiet laughs, the stories only we know.</p>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<section style="padding:5rem 2rem;text-align:center">
+  <div class="container">
+    <div class="section-label reveal">❧ &nbsp; our story &nbsp; ❧</div>
+    <h2 class="section-title reveal">Moments written in gold</h2>
+    <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+
+    <div class="timeline">
+
+      <div class="t-item reveal">
+        <div class="t-content">
+          <div class="t-label">The beginning</div>
+          <div class="t-title">The day we met</div>
+          <p class="t-text"> First time when someone cared about me, asked me are you fine. It was you </p>
+        </div>
+        <div class="t-dot">🌱</div>
+        <div class="t-empty"></div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-empty"></div>
+        <div class="t-dot">☕</div>
+        <div class="t-content">
+          <div class="t-label">A favourite ritual</div>
+          <div class="t-title">Our long conversations</div>
+          <p class="t-text">Hours that felt like minutes.Asking each other questions and sharing our thoughts.knowing eachother and thinking about the best friend I have got.</p>
+        </div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-content">
+          <div class="t-label">The hard days</div>
+          <div class="t-title">you always showed up</div>
+          <p class="t-text">True friendship isn't just the celebrations — it's the quiet presence during the difficult chapters. You always knew exactly what to say.</p>
+        </div>
+        <div class="t-dot">🤝</div>
+        <div class="t-empty"></div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-empty"></div>
+        <div class="t-dot">🌻</div>
+        <div class="t-content">
+          <div class="t-label">The joyful ones</div>
+          <div class="t-title">Laughing until it hurt</div>
+          <p class="t-text">The moments that started with nothing and somehow became the funniest,most precious memories we have.</p>
+        </div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-content">
+          <div class="t-label">The one I call first.</div>
+          <div class="t-title">First person whom i trusted with everything</div>
+          <p class="t-text"> You've seen me at my worst and you're still here.That's what makes you special.  </p>
+        </div>
+        <div class="t-dot">🌿</div>
+        <div class="t-empty"></div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-empty"></div>
+        <div class="t-dot">✨</div>
+        <div class="t-content">
+          <div class="t-label">Right now</div>
+          <div class="t-title">This birthday</div>
+          <p class="t-text">And now here we are — celebrating your Birthday. May, This chapter is your most beautiful one yet.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POLAROIDS -->
+<section class="polaroid-section">
+  <div class="container" style="text-align:center">
+    <div class="section-label reveal">❧ &nbsp; a little gallery &nbsp; ❧</div>
+    <h2 class="section-title reveal">Snapshots</h2>
+    <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+    <div class="polaroid-grid">
+      <div class="polaroid reveal"><div class="polaroid-img">🥂</div><div class="polaroid-cap">every celebration</div></div>
+      <div class="polaroid reveal"><div class="polaroid-img">🌿</div><div class="polaroid-cap">her calm energy</div></div>
+      <div class="polaroid reveal"><div class="polaroid-img">☕</div><div class="polaroid-cap">long chats</div></div>
+      <div class="polaroid reveal"><div class="polaroid-img">🌻</div><div class="polaroid-cap">her warm laugh</div></div>
+      <div class="polaroid reveal"><div class="polaroid-img">✨</div><div class="polaroid-cap">pure sparkle</div></div>
+      <div class="polaroid reveal"><div class="polaroid-img">💛</div><div class="polaroid-cap">golden heart</div></div>
+    </div>
+    <p style="margin-top:2rem;font-size:0.85rem;font-style:italic;color:var(--sage-dim);font-family:'Playfair Display',serif">
+      ❧ ❧
+    </p>
+  </div>
+</section>
+
+<!-- TRAITS -->
+<section class="traits-section">
+  <div class="section-label reveal">❧ &nbsp; things i embrace about you &nbsp; ❧</div>
+  <h2 class="section-title reveal">What makes you, Taran</h2>
+  <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+  <div class="traits-grid">
+    <div class="trait-card reveal"><span class="trait-emoji">💡</span><div class="trait-title">Mind</div><p class="trait-text">Sharp, thoughtful, surprising.You see angles nobody else does and somehow makes it look effortless.</p></div>
+    <div class="trait-card reveal"><span class="trait-emoji">🤗</span><div class="trait-title">Kindness</div><p class="trait-text">You notice the small things. Checks in before you ask. Remembers what matters to you.</p></div>
+    <div class="trait-card reveal"><span class="trait-emoji">🌸</span><div class="trait-title">Grace</div><p class="trait-text">There's a softness and elegance to everything you do — how you speak, listen, and simply exist.</p></div>
+    <div class="trait-card reveal"><span class="trait-emoji">🎯</span><div class="trait-title">Honesty</div><p class="trait-text">You tell you the truth with such care that it never hurts — it just helps. Every single time.</p></div>
+  </div>
+</section>
+
+<!-- FAVOURITE THINGS -->
+<section class="favs-section">
+  <div class="section-label reveal">❧ &nbsp; Your favourites &nbsp; ❧</div>
+  <h2 class="section-title reveal">The little things you love</h2>
+  <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+  <p class="reveal" style="font-size:0.9rem;color:var(--warm);font-style:italic;font-family:'Playfair Display',serif;margin-bottom:0"></p>
+  <div class="favs-row">
+    <div class="fav-chip reveal">☕ morning chai</div>
+    <div class="fav-chip reveal">📚 a good book</div>
+    <div class="fav-chip reveal">🌿 walks outside</div>
+    <div class="fav-chip reveal">🎵  favourite playlist</div>
+    <div class="fav-chip reveal">🌸 fresh flowers</div>
+    <div class="fav-chip reveal">💌 handwritten notes</div>
+    <div class="fav-chip reveal">🍦 Ice cream</div>
+  </div>
+</section>
+
+<!-- ADD A MEMORY -->
+<section class="memory-cta">
+  <div class="container" style="text-align:center">
+    <div class="section-label reveal">❧ &nbsp; add yours &nbsp; ❧</div>
+    <h2 class="section-title reveal">Write a memory for her</h2>
+    <div class="rule reveal"><span></span><em>❧</em><span></span></div>
+    <p class="reveal" style="font-size:0.9rem;color:var(--warm);max-width:480px;margin:0 auto;line-height:1.8;font-weight:300">
+      Type a favourite memory or message for Taran below and it will appear beautifully formatted for her to read.
+    </p>
+    <div class="memory-input-box reveal">
+      <textarea id="memInput" placeholder="Write your memory here... e.g. 'The time we got completely lost and it turned into the best day ever…'"></textarea>
+      <div style="margin-top:1rem;text-align:center">
+        <button class="btn-sage" onclick="addMemory()">Save this memory ❧</button>
+      </div>
+      <div class="memory-result" id="memResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE NAV -->
+<div class="page-nav" style="max-width:960px;margin:0 auto;padding:2rem">
+  <a href="wishes.html">← Birthday Wishes</a>
+  <a href="gifts.html">Next: Gifts →</a>
+</div>
+
+</div><!-- end .page -->
+
+<site-footer>
+  <div class="footer-name">Taran ❧</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wishes.html">Wishes</a></li>
+    <li><a href="memories.html">Memories</a></li>
+    <li><a href="gifts.html">Gifts</a></li>
+  </ul>
+  <div class="footer-copy">❧ &nbsp; Happy Birthday &nbsp; ❧</div>
+</site-footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+const revs=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');io.unobserve(el.target)}}),{threshold:0.1});
+revs.forEach(r=>io.observe(r));
+
+function addMemory(){
+  const val=document.getElementById('memInput').value.trim();
+  if(!val)return;
+  const el=document.getElementById('memResult');
+  el.style.display='block';
+  el.innerHTML='<em style="font-size:0.8rem;color:var(--sage-light);letter-spacing:0.2em;text-transform:uppercase;font-style:normal">❧ A memory for Taran ❧</em><br><br>"'+val+'"';
+  document.getElementById('memInput').value='';
+}
+</script>
+</body>
+</html>
