@@ -152,6 +152,20 @@
   .polaroid{max-width:150px}
   .polaroid-img{height:120px;font-size:2.5rem}
 }
+.polaroid-img {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.polaroid-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
 </style>
 </head>
 <body>
@@ -265,16 +279,15 @@
     <h2 class="section-title reveal">Snapshots</h2>
     <div class="rule reveal"><span></span><em>❧</em><span></span></div>
     <div class="polaroid-grid">
-      <div class="polaroid reveal"><div class="polaroid-img">🥂</div><div class="polaroid-cap">every celebration</div></div>
-      <div class="polaroid reveal"><div class="polaroid-img">🌿</div><div class="polaroid-cap">her calm energy</div></div>
-      <div class="polaroid reveal"><div class="polaroid-img">☕</div><div class="polaroid-cap">long chats</div></div>
-      <div class="polaroid reveal"><div class="polaroid-img">🌻</div><div class="polaroid-cap">her warm laugh</div></div>
-      <div class="polaroid reveal"><div class="polaroid-img">✨</div><div class="polaroid-cap">pure sparkle</div></div>
-      <div class="polaroid reveal"><div class="polaroid-img">💛</div><div class="polaroid-cap">golden heart</div></div>
+      <div class="polaroid reveal"><div class="polaroid-img"><img src="photo1.jpeg" alt="memory"></div><div class="polaroid-cap">"The world got a little brighter the day you were born."</div></div>
+<div class="polaroid reveal"><div class="polaroid-img"><img src="photo2.jpeg" alt="memory"></div><div class="polaroid-cap">Soft heart,strong mind,beautiful soul.</div></div>
+<div class="polaroid reveal"><div class="polaroid-img"><img src="photo3.jpeg" alt="memory"></div><div class="polaroid-cap">"Sunshine mixed with a little bit of magic."</div></div>
+<div class="polaroid reveal"><div class="polaroid-img"><img src="photo4.jpeg" alt="memory"></div><div class="polaroid-cap">"Elegance is an attitude, and you wear it perfectly."</div></div>
+<div class="polaroid reveal"><div class="polaroid-img"><img src="photo5.jpeg" alt="memory"></div><div class="polaroid-cap">pure sparkle</div></div>
+<div class="polaroid reveal"><div class="polaroid-img"><img src="photo6.jpeg" alt="memory"></div><div class="polaroid-cap">"Today is all about you, Moto 💖"</div></div>
     </div>
-    <p style="margin-top:2rem;font-size:0.85rem;font-style:italic;color:var(--sage-dim);font-family:'Playfair Display',serif">
-      ❧ ❧
-    </p>
+    <p style="margin-top:2rem;font-size:0.85rem;font-style:italic;color:var(--sage-dim);font-family:'Playfair Display',serif"></p>
+}></p>❧ ❧
   </div>
 </section>
 
@@ -312,10 +325,10 @@
 <section class="memory-cta">
   <div class="container" style="text-align:center">
     <div class="section-label reveal">❧ &nbsp; add yours &nbsp; ❧</div>
-    <h2 class="section-title reveal">Write a memory for her</h2>
+    <h2 class="section-title reveal"> A memory for you</h2>
     <div class="rule reveal"><span></span><em>❧</em><span></span></div>
     <p class="reveal" style="font-size:0.9rem;color:var(--warm);max-width:480px;margin:0 auto;line-height:1.8;font-weight:300">
-      Type a favourite memory or message for Taran below and it will appear beautifully formatted for her to read.
+      Type a favourite memory or message 
     </p>
     <div class="memory-input-box reveal">
       <textarea id="memInput" placeholder="Write your memory here... e.g. 'The time we got completely lost and it turned into the best day ever…'"></textarea>
@@ -330,7 +343,6 @@
 <!-- PAGE NAV -->
 <div class="page-nav" style="max-width:960px;margin:0 auto;padding:2rem">
   <a href="wishes.html">← Birthday Wishes</a>
-  <a href="gifts.html">Next: Gifts →</a>
 </div>
 
 </div><!-- end .page -->
@@ -341,7 +353,7 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="wishes.html">Wishes</a></li>
     <li><a href="memories.html">Memories</a></li>
-    <li><a href="gifts.html">Gifts</a></li>
+
   </ul>
   <div class="footer-copy">❧ &nbsp; Happy Birthday &nbsp; ❧</div>
 </site-footer>
